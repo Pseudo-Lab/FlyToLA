@@ -1,8 +1,9 @@
-- file: intro
-  sections:
-    - file: docs/markdown-example
-      title: markdown 예시
-    - file: docs/notebook-example
-      title: .ipynb 파일 예시
-    - file: docs/test_file
-      title: 테스트파일
+format: jb-article
+root: intro
+sections:
+- file: docs/markdown-example
+  title: "markdown \uC608\uC2DC"
+- file: docs/notebook-example
+  title: ".ipynb \uD30C\uC77C \uC608\uC2DC"
+- file: docs/test_file
+  title: "\uD14C\uC2A4\uD2B8\uD30C\uC77C"
