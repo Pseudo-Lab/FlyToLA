@@ -38,7 +38,9 @@ html:
   favicon: 'PseudoLab_logo.png'
   use_issues_button: true
   use_repository_button: true
-  
+
+exclude_patterns: [guildeline_docs/*]
+
 sphinx:
   config:
     html_js_files:

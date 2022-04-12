@@ -3,3 +3,7 @@ root: intro
 sections:
 - file: docs/test_file
   title: "테스트 파일"
+- file: docs/markdown-example
+  title: "마크다운 예제"
+- file : docs/notebook-example
+  title: "노트북 예제"
