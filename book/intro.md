@@ -1,3 +1,7 @@
-# Jupyter Book Template for PseudoLab
+# Fly to LA(Linear Algebra)
 
-가짜연구소 자료 정리를 위한 Jupyter Book Template 입니다. 
+* 가짜연구소 선형대수 스터디 아카이브
+* 주요 참고 자료
+* 질문이 있을 때? 깃헙 이슈를 통해 남겨주세요!
+
+### 전체 목차

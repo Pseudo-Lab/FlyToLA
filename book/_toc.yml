@@ -7,3 +7,5 @@ sections:
   title: "마크다운 예제"
 - file : docs/notebook-example
   title: "노트북 예제"
+- file : docs/latex-example
+  title: "수식 예제"
