@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>This is an h1 tag &#8212; PseudoLab FlyToLA</title>
+    <title>.ipynb 파일 활용 &#8212; PseudoLab FlyToLA</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -98,7 +98,7 @@
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="test_file.html">
+  <a class="reference internal" href="../docs/test_file.html">
    테스트 파일
   </a>
  </li>
@@ -143,9 +143,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/docs/markdown-example.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/guildeline_docs/notebook-example.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
                 onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -163,7 +163,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/Pseudo-Lab/FlyToLA/issues/new?title=Issue%20on%20page%20%2Fdocs/markdown-example.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/Pseudo-Lab/FlyToLA/issues/new?title=Issue%20on%20page%20%2Fguildeline_docs/notebook-example.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -179,31 +179,28 @@
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/Pseudo-Lab/FlyToLA/master?urlpath=tree/book/guildeline_docs/notebook-example.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#this-is-an-h2-tag">
-   This is an h2 tag
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#this-is-an-h6-tag">
-     This is an h6 tag
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -211,96 +208,36 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>This is an h1 tag</h1>
+                <h1>.ipynb 파일 활용</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#this-is-an-h2-tag">
-   This is an h2 tag
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#this-is-an-h6-tag">
-     This is an h6 tag
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
             
               <div>
                 
-  <p>Jupyter Book은 markdown 문서를 지원합니다.</p>
-<p>아래와 같은 예시 코드를 입력하면 markdown 문법이 적용됩니다.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is an h1 tag</span>
-<span class="c1">## This is an h2 tag</span>
-<span class="c1">###### This is an h6 tag</span>
+  <div class="tex2jax_ignore mathjax_ignore section" id="ipynb">
+<h1>.ipynb 파일 활용<a class="headerlink" href="#ipynb" title="Permalink to this headline">¶</a></h1>
+<p>Jupyter Book에선 .ipynb파일 또한 지원합니다. 아래와 같이 코드를 입력하고, 그에 대응하는 출력물을 함께 웹페이지로 구성 가능합니다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="o">*</span><span class="n">This</span> <span class="n">text</span> <span class="n">will</span> <span class="n">be</span> <span class="n">italic</span><span class="o">*</span>
-<span class="n">_This</span> <span class="n">will</span> <span class="n">also</span> <span class="n">be</span> <span class="n">italic_</span>
-
-<span class="o">**</span><span class="n">This</span> <span class="n">text</span> <span class="n">will</span> <span class="n">be</span> <span class="n">bold</span><span class="o">**</span>
-<span class="n">__This</span> <span class="n">will</span> <span class="n">also</span> <span class="n">be</span> <span class="n">bold__</span>
-
-<span class="n">_You</span> <span class="o">**</span><span class="n">can</span><span class="o">**</span> <span class="n">combine</span> <span class="n">them_</span>
-
-<span class="o">*</span> <span class="n">Item</span> <span class="mi">1</span>
-<span class="o">*</span> <span class="n">Item</span> <span class="mi">2</span>
-  <span class="o">*</span> <span class="n">Item</span> <span class="mi">2</span><span class="n">a</span>
-  <span class="o">*</span> <span class="n">Item</span> <span class="mi">2</span><span class="n">b</span>
-
-<span class="mf">1.</span> <span class="n">Item</span> <span class="mi">1</span>
-<span class="mf">1.</span> <span class="n">Item</span> <span class="mi">2</span>
-<span class="mf">1.</span> <span class="n">Item</span> <span class="mi">3</span>
-   <span class="mf">1.</span> <span class="n">Item</span> <span class="mi">3</span><span class="n">a</span>
-   <span class="mf">1.</span> <span class="n">Item</span> <span class="mi">3</span><span class="n">b</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
 </pre></div>
 </div>
-<p>입력 결과</p>
-<div class="tex2jax_ignore mathjax_ignore section" id="this-is-an-h1-tag">
-<h1>This is an h1 tag<a class="headerlink" href="#this-is-an-h1-tag" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="this-is-an-h2-tag">
-<h2>This is an h2 tag<a class="headerlink" href="#this-is-an-h2-tag" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="this-is-an-h6-tag">
-<h3>This is an h6 tag<a class="headerlink" href="#this-is-an-h6-tag" title="Permalink to this headline">¶</a></h3>
-<p><em>This text will be italic</em>
-<em>This will also be italic</em></p>
-<p><strong>This text will be bold</strong>
-<strong>This will also be bold</strong></p>
-<p><em>You <strong>can</strong> combine them</em></p>
-<ul class="simple">
-<li><p>Item 1</p></li>
-<li><p>Item 2</p>
-<ul>
-<li><p>Item 2a</p></li>
-<li><p>Item 2b</p></li>
-</ul>
-</li>
-</ul>
-<ol class="simple">
-<li><p>Item 1</p></li>
-<li><p>Item 2</p></li>
-<li><p>Item 3</p>
-<ol class="simple">
-<li><p>Item 3a</p></li>
-<li><p>Item 3b</p></li>
-</ol>
-</li>
-</ol>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x21ff8e508e0&gt;]
+</pre></div>
+</div>
+<img alt="../_images/notebook-example_2_11.png" src="../_images/notebook-example_2_11.png" />
 </div>
 </div>
+<p><a class="reference external" href="https://jupyterbook.org/interactive/interactive.html#plotly">공식 홈페이지</a>를 참고하여 interactive한 시각화도 가능합니다.</p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -316,7 +253,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./docs"
+            path: "./guildeline_docs"
         },
         predefinedOutput: true
     }
