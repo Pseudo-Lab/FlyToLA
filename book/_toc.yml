@@ -9,3 +9,5 @@ sections:
   title: "노트북 예제"
 - file : docs/latex-example
   title: "수식 예제"
+- file : docs/week8/Chap7-QR-Algorithm
+  title : "week 8 chap7. QR Algorithm"
