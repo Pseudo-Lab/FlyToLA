@@ -9,3 +9,5 @@ sections:
   title: "노트북 예제"
 - file : docs/latex-example
   title: "수식 예제"
+- file : docs/week4/Chap 3 LU factorization~
+  title : "week 4 Chap3. LU factorization ~ 끝까지"
