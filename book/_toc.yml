@@ -9,3 +9,5 @@ sections:
   title: "노트북 예제"
 - file : docs/latex-example
   title: "수식 예제"
+- file : docs/crew-seminar-FM/Crew-Seminar6-Factorization_Machines
+  title : "크루 세미나 : Factorization Machines (for Recommendation System)"
