@@ -9,3 +9,9 @@ sections:
   title: "노트북 예제"
 - file : docs/latex-example
   title: "수식 예제"
+- file : docs/Chap.4~5 L1&L2 regression
+  title : "Ch.4~5 L1&L2 regression"
+- file : docs/Chap.7 Eigendecomposition~PowerMethod
+  title : "Ch.7 Eigendecomposition"
+- file : docs/Crew seminar gcn
+  title : "seminar gcn review"

@@ -1,0 +1,523 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Graph Convolutional Network and spectral clustering &#8212; PseudoLab FlyToLA</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="shortcut icon" href="../_static/PseudoLab_logo.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="PageRank" href="Chap.7%20Eigendecomposition~PowerMethod.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/PseudoLab_logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">PseudoLab FlyToLA</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Fly to LA(Linear Algebra)
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="test_file.html">
+   테스트 파일
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markdown-example.html">
+   마크다운 예제
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebook-example.html">
+   노트북 예제
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="latex-example.html">
+   수식 예제
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Chap.4~5%20L1%26L2%20regression.html">
+   Index
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Chap.7%20Eigendecomposition~PowerMethod.html">
+   Ch.7 Eigendecomposition
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   seminar gcn review
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/docs/Crew seminar gcn.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/Pseudo-Lab/FlyToLA"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/Pseudo-Lab/FlyToLA/issues/new?title=Issue%20on%20page%20%2Fdocs/Crew seminar gcn.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spectral-graph-convolution">
+   Spectral graph convolution
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     중간정리
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gcn-model">
+   GCN Model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#experiment">
+   Experiment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reference">
+   Reference
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Graph Convolutional Network and spectral clustering</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spectral-graph-convolution">
+   Spectral graph convolution
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     중간정리
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gcn-model">
+   GCN Model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#experiment">
+   Experiment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reference">
+   Reference
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="graph-convolutional-network-and-spectral-clustering">
+<h1>Graph Convolutional Network and spectral clustering<a class="headerlink" href="#graph-convolutional-network-and-spectral-clustering" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://arxiv.org/abs/1609.02907">SEMI-SUPERVISED CLASSIFICATION WITH GRAPH CONVOLUTIONAL NETWORKS(2017)</a></p></li>
+</ul>
+<p><img alt="img" src="../_images/15.png" /></p>
+<ul class="simple">
+<li><p>Contribution</p>
+<ol class="simple">
+<li><p>simple and well-behaved layer-wise propagation rule for nn models, can be motivated from a first-order approximation of spectral graph convolutions</p></li>
+<li><p>gcn can be used for fast and scalable semi-supervised classification of nodes</p></li>
+</ol>
+</li>
+</ul>
+<p>논문은 그래프 각 노드의 Feature 인 X와 인접 행렬A 를 모델의 입력으로 이용하는 GCN , <span class="math notranslate nohighlight">\(f(X,A)\)</span> 를 제시한다.<br />
+다음과 같은 Graph Convolution 연산을 여러 번(multi-layer) 진행한다.</p>
+<ul class="simple">
+<li><p>layer-wise propagation rule</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ H^{(l+1)} = \sigma(\tilde{D}^{-\frac{1}{2}}\tilde{A}\tilde{D}^{-\frac{1}{2}}H^{(l)}W^{(l)}) \]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H^{(l)}\)</span>  : l번째 layer의 Hidden state이며 , <span class="math notranslate nohighlight">\(H^0 = X\)</span>  (그래프 노드의 초기 feature)이다.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\tilde{A}\)</span>  : <span class="math notranslate nohighlight">\(A + I_N\)</span> 으로, 인접 행렬(A) 에 자기 자신으로의 연결(self-loop)를 추가한 것</p></li>
+<li><p><span class="math notranslate nohighlight">\(\tilde{D}\)</span> : 각 노드의 degree를 나타내는 대각 행렬</p></li>
+<li><p><span class="math notranslate nohighlight">\(W^{(l)}\)</span>  : l번째 layer의 학습가능한 parameter</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma\)</span>  : 비선형 함수로 <span class="math notranslate nohighlight">\(ReLU\)</span> 를 이용</p></li>
+</ul>
+<p>GCN 은 Spectral graph convolution의 first order approximation이다.
+그렇다면 spectral graph convolution 이란 무엇일까?</p>
+<div class="section" id="spectral-graph-convolution">
+<h2>Spectral graph convolution<a class="headerlink" href="#spectral-graph-convolution" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>spatial convolution</p></li>
+</ul>
+<p>공간적인 정보를 기반으로 convolution이 이루어진다.<br />
+예를 들어 이미지에서 CNN은 필터를 통해 중심 픽셀과 근처의 픽셀정보를 토대로 filter에 해당되는 특징을 출력한다.
+<img alt="img" src="../_images/22.png" /></p>
+<p>같은 방식으로 spatial graph convolution을 한다면, 각 노드와 가깝게 연결된 이웃 노드들에 대한 convolution 연산을 수행 할 수 있다.하지만 그래프는 이미지처럼 local invariant하지 않다.<br />
+<img alt="img" src="../_images/32.png" /></p>
+<ul class="simple">
+<li><p>spectral analysis</p></li>
+</ul>
+<p>“<strong>spectral</strong>” simply means <em>decomposing</em> a signal/audio/image/graph into a combination (usually, a sum) of simple elements (wavelets, graphlets).<br />
+“spectral analysis”는 이미지/음성/그래프 신호를 time/spatial domain이 아닌 frequency domain으로 바꿔서(분해해서) 분석하는 것이다.
+<img alt="img" src="../_images/42.png" /></p>
+<p><strong>message passing</strong> : 그래프의 노드는 고정된 값이 아니라, 시간 흐름에 따른 이웃 노드들의 signal 을 토대로 update가 된다.</p>
+<p><img alt="img" src="../_images/52.png" /></p>
+<p>한 노드의 정보는 여러 노드의 signal 이 혼재되어 있으므로, 이를 여러 signal의 요소로 나눠서 node의 특징을 추출하자<br />
+→ spectral graph convolution</p>
+<p>결론부터 얘기하면 GNN에서의 “spectral” 은 <strong>eigen-decomposition of graph Laplacian L</strong> 이다.</p>
+<ul class="simple">
+<li><p>Fourier Transform(푸리에 변환)</p></li>
+</ul>
+<p>푸리에 변환이란, 임의의 입력 신호를 다양한 주파수를 갖는 주기함수들의 합으로 분해하여 표현하는 것이다.</p>
+<p><img alt="img" src="../_images/62.png" />
+<img alt="img" src="../_images/17.png" /></p>
+<p>푸리에 변환 (1)의 결과값은 임의의 signal <span class="math notranslate nohighlight">\(f(x)\)</span>  와  <span class="math notranslate nohighlight">\(e^{−2πixξ }\)</span> 의 내적 이고,</p>
+<p>오일러 공식에 의해  <span class="math notranslate nohighlight">\(e^{−2πixξ }\)</span> 을 cos,sin 요소의 합으로 표현하면   <span class="math notranslate nohighlight">\(e^{−2πixξ }\)</span> = cos( <span class="math notranslate nohighlight">\(2πxξ) + isin(2πxξ)\)</span></p>
+<p>결국 푸리에 변환은 주어진 signal f(x) 에 대한  cosine에서 유사한 정도, sine에서 유사한 정도의 합</p>
+<p>그런데, cosine, sine을 내적하면 0 이 되므로(삼각함수 직교), cosine과 sine basis 의 선형결합을 통해서 푸리에 변환을 할 수 있다.</p>
+<ul class="simple">
+<li><p>why Laplacian matrix ?</p></li>
+</ul>
+<p>Laplacian matrix L = D - A<br />
+라플라시안 행렬은 인접행렬에 해당 노드의 차수 정보를 추가한 행렬, 해당 노드의 차수를 나타내는 행렬 D 와 인접 여부가 -1인 인접행렬 A를 이용해 구한다.<br />
+<strong>L 은 real-symmetric matrix 이기 때문에 laplacian matrix 의 eigen-value decomposition을 통해 구한 eigenvector 들은 orthogonal 하다!</strong><br />
+<strong>따라서 graph signal에 대한 행렬인 laplacian matrix 를 decomposition 해서 구한 eigenvector들의 선형결합을 graph signal의 푸리에 변환으로 이해할 수 있다.</strong></p>
+<ul class="simple">
+<li><p>graph laplacian<br />
+<img alt="img" src="../_images/72.png" />
+<img alt="img" src="../_images/82.png" /></p></li>
+</ul>
+<p>laplacian operator는 gradient의 발산(divergence) 정도에 대한 변화하는 정도를 측정한다.
+이를 그래프에 적용에서 이해하면 특정 node에서의 signal이 발산하는 정도는, signal 의 흩어짐 여부 즉, <strong>smoothness</strong> 에 대한 정도이다. 차이가 적다 = 이웃 노드와 비슷하다 , 반면 차이가 크다는 건 노드 간 다른 특징을 가지고 있다.</p>
+<p>⇒ Laplacian matrix는 graph representation 중에서 이웃 노드와의 변화 흐름을 통해, 노드의 특징을 나타내는 그래프 표현이다.</p>
+<p>예시)<br />
+아래 그림은 사람의 behavior를 graph으로 표현했을 때, 해당 graph의 laplacian 행렬의 eigenvector <span class="math notranslate nohighlight">\(u2,u3,u4,u8,,(0&lt;λ2≤λ3≤λ4≤λ8)\)</span>에 graph 노드를 임베딩한 것이다. <span class="math notranslate nohighlight">\(u^Tf(v_i)\)</span></p>
+<p>u2, 머리와 팔은 가까우니 이웃노드일 가능성이 높고, 머리와 다리는 상이한 노드일 가능성이 크다. eigenvalue가 가장 작은 u2에 임베딩했을 때, graph의 노드들을 이웃과 상이한 노드 집단으로 잘 분리한다.
+→ eigenvector의 선형결합을 통해 가까운 이웃노드에 대한 signal(low eigenvalue) 와 멀리 있는 상이한 이웃노드에 대한 signal(high) 을 추출할 수 있다.</p>
+<div class="section" id="id1">
+<h3>중간정리<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Laplacian matrix 는 노드 내에 있는 비슷한 노드와 상이한 노드 간의 signal에 대한 정보(smoothness)를 담고 있다.</p></li>
+<li><p>푸리에 변환은 orthogonal한 signal들의 선형결합으로 이해할 수 있다.</p></li>
+<li><p>Laplacian matrix는 symmetric matrix고 eigen-value decomposition 을 통해 orthogonal한 eigenvector들을 구할 수 있다.</p></li>
+</ul>
+<p>논문으로 돌아와서,<br />
+“symmetric normalized Laplacian”  : 라플라시안 행렬을 정규화하는 이유는 GNN의 레이어를 쌓을수록, gradient vanishing 없이 node feature의 propagation 이 가능하게 하는데 있다.</p>
+<p><span class="math notranslate nohighlight">\(L=I−D^{−1/2}AD^{−1/2}\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span># Computing the graph Laplacian
+# A is an adjacency matrix of some graph G
+import numpy as np
+N = A.shape[0] # number of nodes in a graph
+D = np.sum(A, 0) # node degrees
+D_hat = np.diag((D + 1e-5)**(-0.5)) # normalized node degrees
+L = np.identity(N) — np.dot(D_hat, A).dot(D_hat) # Laplacian
+</pre></div>
+</div>
+<p><img alt="img" src="../_images/18.png" />
+<img alt="img" src="../_images/19.png" /></p>
+<p>그래프에서 spectral convolutions를 다음과 같이 각 신호 x에 대한 필터 <span class="math notranslate nohighlight">\(g_\theta\)</span>에 대한 곱으로 정의한다.</p>
+<p><span class="math notranslate nohighlight">\(g_\theta * x = Ug_\theta{U^T}x\)</span>
+U 는 그래프의 normalized Laplacian 행렬 <span class="math notranslate nohighlight">\(L = \tilde{D}^{-\frac{1}{2}}\tilde{A}\tilde{D}^{-\frac{1}{2}} = UΛU^T\)</span> 의 고유벡터 행렬을 의미한다.  <span class="math notranslate nohighlight">\(Λ\)</span>는 고유값을 나타내는 대각행렬이고, <span class="math notranslate nohighlight">\(U^Tx\)</span> 는 x에 대한 그래프 푸리에 변환이다.</p>
+<p>최종적으로,</p>
+<p>논문에서는 renormalization trick을 통해 ,  normalized laplacian 을 아래와 같이 사용한다.<br />
+$<span class="math notranslate nohighlight">\( L = \tilde{D}^{-\frac{1}{2}}\tilde{A}\tilde{D}^{-\frac{1}{2}} = UΛU^T \)</span>$</p>
+<ul class="simple">
+<li><p>인접 행렬의 한계점</p>
+<ul>
+<li><p>A에는 neighbor node와의 연결만 표현되어 있기 때문에 graph convolution 과정에서 해당 node 자체에 대한 정보는 latent feature vector를 만들 때 고려되지 않는다. → self loop 추가</p></li>
+<li><p>일반적으로 A는 정규화되어 있지 않기 때문에 feature vector와 A를 곱할 경우 feature vector의 크기가 불안정하게 변할 수 있다. → 정규화</p></li>
+</ul>
+</li>
+<li><p>GCN ,<span class="math notranslate nohighlight">\(f(X,A)\)</span>
+$<span class="math notranslate nohighlight">\( H^{(l+1)} = \sigma(\tilde{D}^{-\frac{1}{2}}\tilde{A}\tilde{D}^{-\frac{1}{2}}H^{(l)}W^{(l)}) \)</span>$</p></li>
+</ul>
+<p><img alt="img" src="../_images/101.png" />
+<img alt="img" src="../_images/111.png" />
+<img alt="img" src="../_images/121.png" /></p>
+<p>위에서 계산한 <span class="math notranslate nohighlight">\(\tilde{D}^{-\frac{1}{2}}\tilde{A}\tilde{D}^{-\frac{1}{2}}\)</span> 를 이용하여 <span class="math notranslate nohighlight">\(H^{(l)},l=0\)</span> 을 계산하였다.<br />
+l=0인 경우 초기값은 각 노드의 초기 feature vector들이다. 예를들어, 노드가 단어라면 word embedding, 문서라면 back of word vector 인 식이다.
+결국 식을 풀면, 각 행은 각 노드에 연결된 자기자신을 포함한 노드들의 초기 feature값들의 normalized된 가중합이다.</p>
+<p>이후 학습가능한 파라미터인 <span class="math notranslate nohighlight">\(W^{(l)}\)</span> 곱하여, 각 노드별로 인접 노드들의 가중치 * feature vector * W 의 합을 가지게 된다.</p>
+<p>→ <strong>GCN은 특정 노드의 representation으로 해당 노드에 연결되어 있는 노드들을 가중합하는 방법이라고 볼 수 있다.</strong></p>
+</div>
+</div>
+<div class="section" id="gcn-model">
+<h2>GCN Model<a class="headerlink" href="#gcn-model" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[ Z = f(X,A) = softmax(\tilde{A}ReLU(\tilde{A}XW^{(0)}W^{(1)}) \]</div>
+<p>논문에서는 2-layer GCN을 이용하였다.
+비선형 함수로 첫 번째 layer에서는 ReLU , 두 번째 layer에서는 classification을 위해 Softmax를 이용한다</p>
+<p>traditional FC layer 과 비슷하다. 크게 두 스텝으로 나눠서 보자면</p>
+<ol class="simple">
+<li><p>aggregate neighbors</p></li>
+<li><p>pass to a standard neural net<br />
+→ 비선형 함수를 통해 low dimention represent vector 로 축소한다.<br />
+→ last layer 의 output dimension = 1 , for classification</p></li>
+</ol>
+<p><img alt="img" src="../_images/131.png" /></p>
+</div>
+<div class="section" id="experiment">
+<h2>Experiment<a class="headerlink" href="#experiment" title="Permalink to this headline">¶</a></h2>
+<p><img alt="img" src="../_images/151.png" />
+<img alt="img" src="../_images/16.png" /></p>
+<p><span class="math notranslate nohighlight">\(H^{(l+1)} = \sigma(\tilde{D}^{-\frac{1}{2}}\tilde{A}\tilde{D}^{-\frac{1}{2}}H^{(l)}W^{(l)}) + H^{(l)}\)</span><br />
+논문에 따르면 residual connection 을 추가한 모델은 layer가 더 깊어졌을 때, 좀 더 학습을 잘했다.<br />
+가장 좋은 결과는 2~3 개의 layer를 이용한 경우였다.</p>
+</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://thejb.ai/comprehensive-gnns-3/">https://thejb.ai/comprehensive-gnns-3/</a></p>
+<p><a class="reference external" href="https://ralasun.github.io/deep%20learning/2021/02/15/gcn/">https://ralasun.github.io/deep learning/2021/02/15/gcn/</a></p>
+<p><a class="reference external" href="https://baekyeongmin.github.io/paper-review/gcn-review/">https://baekyeongmin.github.io/paper-review/gcn-review/</a></p>
+<p><a class="reference external" href="https://untitledtblog.tistory.com/152">https://untitledtblog.tistory.com/152</a></p>
+<p><a class="reference external" href="https://towardsdatascience.com/understanding-graph-convolutional-networks-for-node-classification-a2bfdb7aba7b">https://towardsdatascience.com/understanding-graph-convolutional-networks-for-node-classification-a2bfdb7aba7b</a></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="Chap.7%20Eigendecomposition~PowerMethod.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">PageRank</p>
+        </div>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By FlyToLA crew<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
